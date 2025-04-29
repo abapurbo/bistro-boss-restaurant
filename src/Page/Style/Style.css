@@ -1,0 +1,10 @@
+.bgOpacity{
+background-color:rgba(11, 11, 11, 0.4);
+}
+.bgImage{
+    width:1000px;
+    height:400px;
+    background-image: url('../../assets/home/chef-service.jpg');
+    background-size:cover;
+    margin-bottom:100px;
+}
