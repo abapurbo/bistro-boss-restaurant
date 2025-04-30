@@ -1,0 +1,22 @@
+.background-img {
+    height: 600px;
+    background-image: url('../../../assets/home/featured.jpg');
+    background-size: cover;
+    background-position: center;
+    object-position:center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    position: relative;
+
+
+}
+
+.background-img::before {
+    background-color: rgba(0, 0, 0, 0.5);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  
+   
+}
