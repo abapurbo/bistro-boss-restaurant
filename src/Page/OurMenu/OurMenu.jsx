@@ -20,9 +20,7 @@ const OurMenu = () => {
 
     return (
         <div className=" mb-16">
-            <Helmet>
-                <title>Bistro Menu | Our menu</title>
-            </Helmet>
+          
             <Cover img={menuImg} title={'our menu'}></Cover>
             <SectionTitle heading="today's offers" subHeading="don't miss"></SectionTitle>
             <div className='grid md:grid-cols-2 gap-7 my-10 mx-20'>
