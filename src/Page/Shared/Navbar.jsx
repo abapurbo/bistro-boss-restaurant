@@ -4,9 +4,9 @@ import '../Style/Style.css'
 
 const Navbar = () => {
     const navOption = <div className='space-x-4 '>
-        <NavLink>Home</NavLink>
-        <NavLink>Home</NavLink>
-        <NavLink>Home</NavLink>
+        <NavLink to='/'>Home</NavLink>
+        <NavLink to='/menu'>Our Menu</NavLink>
+        <NavLink to='/order/salad'>Order Food</NavLink>
     </div>
     return (
         <div className="navbar fixed z-10 max-w-screen-xl bgOpacity text-white shadow-sm">
