@@ -2,7 +2,6 @@ import Cover from "../../Shared/Cover/Cover";
 import Orderimg from '../../../assets/shop/banner2.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import FoodCard from "../../../Commponents/FoodCard";
 import UseMenu from "../../../hook/UseMenu";
 import { useState } from "react";
 import { useParams } from "react-router-dom";

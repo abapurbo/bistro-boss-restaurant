@@ -20,6 +20,9 @@ const OurMenu = () => {
 
     return (
         <div className=" mb-16">
+            <Helmet>
+                <title>Bistro Boss || Our menu</title>
+            </Helmet>
           
             <Cover img={menuImg} title={'our menu'}></Cover>
             <SectionTitle heading="today's offers" subHeading="don't miss"></SectionTitle>
