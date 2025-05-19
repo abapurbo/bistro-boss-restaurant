@@ -1,7 +1,6 @@
-import React from 'react';
+
 
 const MenuItem = ({item}) => {
-    console.log(item)
     const {image,name,price,recipe}=item
     return (
         <div className='flex flex-start items-start  space-x-6'>

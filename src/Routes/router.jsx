@@ -3,23 +3,56 @@ import MainLayout from './../Layout/MainLayout';
 import Home from "../Page/Home/Home";
 import OurMenu from "../Page/OurMenu/OurMenu";
 import Order from "../Page/Order/Order/Order";
+import Login from "../Authentication/Login";
+import SignUp from "../Authentication/SignUp";
+import PrivateRoute from "../Private/PrivateRoute";
+import Secret from "../Page/Secret";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../Page/Dashboard/Cart";
+import AllUsers from "../Page/Dashboard/AllUsers";
 
-export const router=createBrowserRouter([
+export const router = createBrowserRouter([
     {
-        path:'/',
-        element:<MainLayout></MainLayout>,
-        children:([
+        path: '/',
+        element: <MainLayout></MainLayout>,
+        children: [
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
             },
             {
-                path:'/menu',
-                element:<OurMenu></OurMenu>
-            },{
-                path:'/order/:category',
-                element:<Order></Order>
+                path: '/menu',
+                element: <OurMenu></OurMenu>
+            }, {
+                path: '/order/:category',
+                element: <Order></Order>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/signUp',
+                element: <SignUp></SignUp>
+            }, {
+                path: '/secret',
+                element: <PrivateRoute><Secret></Secret></PrivateRoute>
             }
-        ])
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+            {
+                path: 'cart',
+                element: <Cart></Cart>
+            },
+            // only admin access
+            {
+                path: 'allUsers',
+                element: <AllUsers></AllUsers>
+            }
+        ]
     }
 ])
