@@ -13,31 +13,31 @@ const Dashboard = () => {
                         admin ? <>
                             <li>
 
-                                <NavLink to='userHome' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
+                                <NavLink to='admin' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
                                     <FaHome></FaHome>
                                     <h1>Admin Home</h1>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='reservation' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
+                                <NavLink to='addItem' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
                                    <FaUtensils></FaUtensils>
                                     <h1>ADD Items</h1>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='cart' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
+                                <NavLink to='mangeItem' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
                                     <FaList></FaList>
                                     <h1>Mange Items</h1>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='addReview' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
+                                <NavLink to='mangeBooking' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
                                     <FaBook></FaBook>
                                     <h1>Mange Bookings</h1>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='myBooking' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
+                                <NavLink to='allUsers' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
                                     <FaUsers></FaUsers>
                                     <h1>All Users</h1>
                                 </NavLink>
