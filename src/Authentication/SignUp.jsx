@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import google from '../assets/authenticationicon/google.png'
 import facebook from '../assets/authenticationicon/facebook.png'
@@ -31,7 +31,7 @@ const SignUp = () => {
     const onSubmit = data => {
 
         createUser(data.email, data.password)
-            .then(result => {
+            .then(() => {
                 const userProfile = {
                     displayName: data.name,
                     photoURL: data.photo,
@@ -56,7 +56,7 @@ const SignUp = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                //   navigate('/')
+                  navigate('/')
             })
             .catch(error => console.log("error", error))
     }

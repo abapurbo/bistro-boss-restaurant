@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     const axiosSecure = AxiosSecuire()
-    const { refetch, data: users = [] } = useQuery({
+    const {refetch, data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users')
@@ -15,7 +15,7 @@ const AllUsers = () => {
 
     })
     // update admin user
-    const handleMakeAdmin =user=> {
+    const handleMakeAdmin = user => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -28,16 +28,15 @@ const AllUsers = () => {
             if (result.isConfirmed) {
 
                 axiosSecure.patch(`/users/admin/${user._id}`)
-                .then(res=>console.log(res.data))
                     .then(res => {
-                        if (res.data.modifiedCount> 0) {
+                        if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 title: "Admin!",
                                 text: `Your ${user.name} has been admin.`,
                                 icon: "success"
                             });
                         }
-                        refetch()
+                      refetch()
                     })
             }
         })
@@ -98,9 +97,9 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 {
-                                    
+                                      user.role==='admin'?<td className='font-semibold'>Admin</td>:<td onClick={() => handleMakeAdmin(user)} className='text-xl btn m-4 text-white bg-orange-400'><FaUsers></FaUsers></td>
+                                 
                                 }
-                                <td onClick={() => handleMakeAdmin(user)} className='text-xl btn m-4 text-white bg-orange-400'><FaUsers></FaUsers></td>
                                 <td onClick={() => handleDeleteUser(user._id)} className='text-red-600 '><FaTrashAlt className='ml-4'></FaTrashAlt></td>
 
                             </tr>)

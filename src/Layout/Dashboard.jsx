@@ -1,16 +1,17 @@
 import React from 'react';
 import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
+import useAdmin from '../hook/useAdmin';
 
 const Dashboard = () => {
-    const admin = true;
+     const [isAdmin]=useAdmin()
     return (
         <div className='flex p-3'>
             {/* this is dashboard sidebar */}
             <div className='min-h-screen p-4 bg-orange-500'>
                 <ul className=' menu p-3 space-y-2 '>
                     {
-                        admin ? <>
+                        isAdmin ? <>
                             <li>
 
                                 <NavLink to='admin' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
@@ -20,7 +21,7 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink to='addItem' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
-                                   <FaUtensils></FaUtensils>
+                                    <FaUtensils></FaUtensils>
                                     <h1>ADD Items</h1>
                                 </NavLink>
                             </li>

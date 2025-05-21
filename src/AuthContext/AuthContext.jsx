@@ -1,28 +1,43 @@
 import { createUserWithEmailAndPassword, FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase';
+import useAxiosPublic from './../hook/useAxiosPublic';
 export const Context = createContext(null)
 const AuthContext = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState([])
-    const [photo,setPhoto]=useState('')
+    const [photo, setPhoto] = useState('')
+    const axiosPublic=useAxiosPublic()
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const facebookProvider = new FacebookAuthProvider()
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
+             if(currentUser){
+              const userInfo={email:currentUser?.email};
+              axiosPublic.post('/jwt',userInfo)
+              .then(res=>{
+                if(res.data.token){
+                    localStorage.setItem('access-token',res.data.token)
+                }
+               
+              })
+             }
+             else{
+                localStorage.removeItem('access-token')
+             }
+            
             setLoading(false)
-            console.log(currentUser)
             setPhoto(currentUser?.photoURL)
             setUser(currentUser)
-        
+
 
         })
         return (() => {
 
             unSubscribe('')
         })
-    }, [])
+    }, [axiosPublic])
 
     // create user
     const createUser = (email, password) => {
@@ -34,24 +49,24 @@ const AuthContext = ({ children }) => {
     }
 
     // logOutUser
-    const signOutUser= () => {
+    const signOutUser = () => {
         return signOut(auth)
-        .then(()=>console.log('logOUt'))
-        .catch(error=>console.log(error))
-       
+            .then(() => console.log('logOUt'))
+            .catch(error => console.log(error))
+
     }
     const updateUser = (profile) => {
-        return updateProfile(auth.currentUser,profile)
+        return updateProfile(auth.currentUser, profile)
     }
     // google provider
     const googleAuth = () => {
-      return  signInWithPopup(auth,googleProvider)
+        return signInWithPopup(auth, googleProvider)
     }
     const githubAuth = () => {
-       return signInWithPopup(auth,githubProvider)
+        return signInWithPopup(auth, githubProvider)
     }
     const facebookAuth = () => {
-       return signInWithPopup(auth,facebookProvider)
+        return signInWithPopup(auth, facebookProvider)
     }
 
     const userInfo = {
@@ -65,7 +80,7 @@ const AuthContext = ({ children }) => {
         googleAuth,
         githubAuth,
         facebookAuth,
-       
+
 
     }
     return (
