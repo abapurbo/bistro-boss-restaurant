@@ -71,7 +71,7 @@ const AllUsers = () => {
 
     }
     return (
-        <div className='px-8 w-[900px]'>
+        <div className='px-8 '>
 
             <div className="flex justify-between my-4 font-semibold">
                 <h2 className="text-3xl">All Users</h2>

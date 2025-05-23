@@ -47,7 +47,7 @@ const ItemUpdate = () => {
         }
     }
     return (
-        <div className='w-[900px] m-10'>
+        <div className=' m-10'>
             <SectionTitle heading='Update item' subHeading='Refresh Info'></SectionTitle>
             <div className='mt-10'>
                 <form onSubmit={handleSubmit(onSubmit)}>

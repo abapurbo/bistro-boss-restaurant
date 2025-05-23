@@ -6,9 +6,9 @@ import useAdmin from '../hook/useAdmin';
 const Dashboard = () => {
      const [isAdmin]=useAdmin()
     return (
-        <div className='flex p-3'>
+        <div className='flex p-3 gap-3'>
             {/* this is dashboard sidebar */}
-            <div className='min-h-screen p-4 bg-orange-500'>
+            <div className='min-h-screen w-3/12 p-4 bg-orange-500'>
                 <ul className=' menu p-3 space-y-2 '>
                     {
                         isAdmin ? <>
@@ -101,7 +101,7 @@ const Dashboard = () => {
 
             </div>
             {/* this is dashboard layout */}
-            <div>
+            <div className='w-11/12'>
                 <Outlet></Outlet>
             </div>
         </div>

@@ -3,6 +3,7 @@ import UseCart from '../../hook/UseCart';
 import { FaTrash, FaTrashAlt } from 'react-icons/fa';
 import AxiosSecuire from '../../hook/AxiosSecuire';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cart, refetch] = UseCart()
@@ -45,10 +46,15 @@ const Cart = () => {
                     Total Price:${cart.reduce((accumulator, currentValue) => (
                         accumulator + currentValue.price
                     ), 0)}</h1>
-                <button className='btn btn-primary text-xl'>PAY</button>
+                {
+                    cart.length ? <Link to='/dashboard/payment'>
+                        <button className='btn btn-primary text-xl'>PAY</button>
+                    </Link> : <button disabled className='btn btn-primary text-xl'>PAY</button>
+                }
+
             </div>
             <div>
-                <table className="table w-[900px]">
+                <table className="table ">
                     {/* head */}
                     <thead className='bg-gray-200 '>
                         <tr>
@@ -82,11 +88,7 @@ const Cart = () => {
                                     <td onClick={() => handelDeleteCart(item._id)}><FaTrashAlt className='text-red-500'></FaTrashAlt></td>
                                 </tr>))
                         }
-
-
                     </tbody>
-
-
                 </table>
             </div>
         </div>

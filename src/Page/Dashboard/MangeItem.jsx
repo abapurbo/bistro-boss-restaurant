@@ -43,7 +43,7 @@ const MangeItem = () => {
         });
     }
     return (
-        <div className='w-[900px]'>
+        <div className=''>
             <SectionTitle heading='Mange items' subHeading="What's is now"></SectionTitle>
             <div className='p-4 mt-4'>
 

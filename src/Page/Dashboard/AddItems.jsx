@@ -42,7 +42,7 @@ const AddItems = () => {
 
     }
     return (
-        <div className='w-[900px] m-4'>
+        <div className='m-4'>
             <SectionTitle heading='add items' subHeading="What's a now"></SectionTitle>
             <div className='mt-10'>
                 <form onSubmit={handleSubmit(onSubmit)}>
