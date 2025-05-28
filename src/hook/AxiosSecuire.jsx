@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import AuthUse from '../ShardHook/AuthUse';
 
 const axiosCreate = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://bistro-boss-server-gules-pi.vercel.app'
 })
+
 const AxiosSecuire = () => {
     const navigate = useNavigate();
     const { signOutUser } = AuthUse()
