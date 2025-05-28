@@ -5,9 +5,10 @@ import AuthUse from '../ShardHook/AuthUse';
 
 const UseCart = () => {
     const axiosSecruire = AxiosSecuire()
-    const {user}=AuthUse()
+    const {user,loading}=AuthUse()
     const { refetch, data: cart = [] } = useQuery({
         queryKey: ['cart', user?.email],
+        enabled:!loading,
         queryFn: async () => {
             const res = await axiosSecruire.get(`/carts?email=${user.email}`)
             return res.data

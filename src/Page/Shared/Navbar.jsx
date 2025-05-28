@@ -4,15 +4,23 @@ import '../Style/Style.css'
 import { Context } from '../../AuthContext/AuthContext';
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import UseCart from '../../hook/UseCart';
+import useAdmin from '../../hook/useAdmin';
 const Navbar = () => {
     const { user, signOutUser, photo } = useContext(Context)
+    const [isAdmin] = useAdmin()
     const [cart] = UseCart()
     const [dropdown, setDropdown] = useState(false)
     const navOption = <div className='space-x-4 text-xl font-semibold'>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/menu'>Our Menu</NavLink>
-        <NavLink to='/secret'>Secret</NavLink>
-        <NavLink to='/order/salad'>Order Food</NavLink>
+        <NavLink to='/' className={({isActive})=>isActive?' outline-1 outline-pink-200 px-4 py-2 rounded-xl':''}>Home</NavLink>
+        <NavLink to='/menu' className={({isActive})=>isActive?'  outline-1 outline-pink-200 px-4 py-2 rounded-xl':''}>Our Menu</NavLink>
+        <NavLink to='/secret' className={({isActive})=>isActive?'  outline-1 outline-pink-200 px-4 py-2 rounded-xl':''}>Secret</NavLink>
+        <NavLink to='/order/salad' className={({isActive})=>isActive?'  outline-1 outline-pink-200 px-4 py-2 rounded-xl':''}>Order Food</NavLink>
+        {
+            user && isAdmin && <NavLink to='dashboard/adminHome'>Dashboard</NavLink>
+        }
+        {
+            user && !isAdmin && <NavLink to='dashboard/userHome'>Dashboard</NavLink>
+        }
     </div>
 
     return (
@@ -40,7 +48,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 <div className='flex mr-4 relative'>
                     <Link to='dashboard/cart'>
-                    <HiOutlineShoppingCart className='text-3xl text-white bg-purple-500 p-1  rounded-full ' />
+                        <HiOutlineShoppingCart className='text-3xl text-white bg-purple-500 p-1  rounded-full ' />
 
                     </Link>
                     <span className=' p-1 text-red-800 font-bold absolute -top-4 -right-3  rounded-full'>{cart.length}</span>

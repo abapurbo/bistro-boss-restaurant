@@ -1,10 +1,13 @@
 import React from 'react';
-import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from 'react-icons/fa';
+import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaPaypal, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hook/useAdmin';
+import { MdPayments } from 'react-icons/md';
+import UseCart from '../hook/UseCart';
 
 const Dashboard = () => {
      const [isAdmin]=useAdmin()
+     const [cart]=UseCart()
     return (
         <div className='flex p-3 gap-3'>
             {/* this is dashboard sidebar */}
@@ -14,7 +17,7 @@ const Dashboard = () => {
                         isAdmin ? <>
                             <li>
 
-                                <NavLink to='admin' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
+                                <NavLink to='adminHome' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
                                     <FaHome></FaHome>
                                     <h1>Admin Home</h1>
                                 </NavLink>
@@ -60,7 +63,14 @@ const Dashboard = () => {
                             <li>
                                 <NavLink to='cart' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
                                     <FaShoppingCart></FaShoppingCart>
-                                    <h1>MY CART</h1>
+                                    <h1>MY CART({cart.length})</h1>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='paymentHistory' className={({ isActive }) => isActive ? 'active btn btn-primary text-[18px]' : 'text-[18px]'}>
+                                    {/* <FaShoppingCart></FaShoppingCart> */}
+                                   <MdPayments></MdPayments>
+                                    <h1>Payment history</h1>
                                 </NavLink>
                             </li>
                             <li>

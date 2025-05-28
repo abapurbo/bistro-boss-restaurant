@@ -7,29 +7,33 @@ const AuthContext = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState([])
     const [photo, setPhoto] = useState('')
-    const axiosPublic=useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const facebookProvider = new FacebookAuthProvider()
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
-             if(currentUser){
-              const userInfo={email:currentUser?.email};
-              axiosPublic.post('/jwt',userInfo)
-              .then(res=>{
-                if(res.data.token){
-                    localStorage.setItem('access-token',res.data.token)
-                }
-               
-              })
-             }
-             else{
+            if (currentUser) {
+                const userInfo = { email: currentUser?.email };
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token)
+                            setLoading(false)
+                        }
+
+                    })
+            }
+            else {
                 localStorage.removeItem('access-token')
-             }
-            
-            setLoading(false)
+                setLoading(false)
+
+            }
+
+
             setPhoto(currentUser?.photoURL)
             setUser(currentUser)
+
 
 
         })
