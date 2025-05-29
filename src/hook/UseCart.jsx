@@ -4,13 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import AuthUse from '../ShardHook/AuthUse';
 
 const UseCart = () => {
-    const axiosSecruire = AxiosSecuire()
+    const axiosSecure= AxiosSecuire()
     const {user,loading}=AuthUse()
     const { refetch, data: cart = [] } = useQuery({
         queryKey: ['cart', user?.email],
-        enabled:!loading,
+        enabled:!loading ,
         queryFn: async () => {
-            const res = await axiosSecruire.get(`/carts?email=${user.email}`)
+            const res = await axiosSecure.get(`/carts?email=${user.email}`)
             return res.data
         }
     })

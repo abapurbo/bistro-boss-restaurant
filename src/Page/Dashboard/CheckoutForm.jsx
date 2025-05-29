@@ -4,6 +4,7 @@ import UseCart from '../../hook/UseCart';
 import AxiosSecuire from '../../hook/AxiosSecuire';
 import AuthUse from '../../ShardHook/AuthUse';
 import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CheckoutForm = () => {
     const { user } = AuthUse()
@@ -11,6 +12,7 @@ const CheckoutForm = () => {
     const [transitionId, setTransitionId] = useState('')
     const [clientSecret, setClientSecret] = useState('')
     const axiosSecure = AxiosSecuire()
+    const navigate=useNavigate()
     const [cart] = UseCart()
     const stripe = useStripe();
     const element = useElements()//I don't understand this line code 
@@ -69,6 +71,7 @@ const CheckoutForm = () => {
                     timer: 1500
                 });
                 setTransitionId(paymentIntent.id)
+                navigate('/dashboard/paymentHistory')
 
             }
 
@@ -89,6 +92,7 @@ const CheckoutForm = () => {
     }
     return (
         <div>
+            
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{

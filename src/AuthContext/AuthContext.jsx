@@ -26,7 +26,7 @@ const AuthContext = ({ children }) => {
             }
             else {
                 localStorage.removeItem('access-token')
-                setLoading(false)
+                setLoading(true)
 
             }
 
@@ -45,18 +45,20 @@ const AuthContext = ({ children }) => {
 
     // create user
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
     //login user
     const loginUser = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     // logOutUser
     const signOutUser = () => {
+        setLoading(true)
         return signOut(auth)
-            .then(() => console.log('logOUt'))
-            .catch(error => console.log(error))
+            
 
     }
     const updateUser = (profile) => {
@@ -64,12 +66,15 @@ const AuthContext = ({ children }) => {
     }
     // google provider
     const googleAuth = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
     const githubAuth = () => {
+        setLoading(true)
         return signInWithPopup(auth, githubProvider)
     }
     const facebookAuth = () => {
+        setLoading(true)
         return signInWithPopup(auth, facebookProvider)
     }
 
